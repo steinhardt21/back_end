@@ -1,0 +1,4 @@
+{
+    "mongoURI":"mongodb+srv://alexAdmin:Nucleus21@cluster0-75oxj.mongodb.net/NucleusDB?retryWrites=true&w=majority",
+    "jwtToken": "mysecrettoken"
+}
