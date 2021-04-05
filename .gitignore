@@ -1,0 +1,6 @@
+node_modules/
+config/production.json
+config/default.json
+i.dea/
+.vscod/
+client/
