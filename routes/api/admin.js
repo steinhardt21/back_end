@@ -229,12 +229,16 @@ router.get('/candidatures-data', async(req, res) => {
                     for(let t=0; t<profile_industry.length; t++) {
                         if((profiles[i]._id).toString() === (profile_industry[t].Profile).toString()) {
                             candidacy.IndustryCandidate = profile_industry[t].Industry
+                            console.log('Industry', profile_industry[t].Industry)
+                            
                             break
                         }
                     }    
                     break
                 }
             }
+
+            console.log('candidate', candidacy.IndustryCandidate)
 
             for(let i=0; i<project_owner.length; i++) {
                 if((candidacy.Call_Project.Project._id).toString() === (project_owner[i].Project).toString()) {
@@ -253,13 +257,7 @@ router.get('/candidatures-data', async(req, res) => {
                            break
                         }
                     }
-    
-                    for(let t=0; t<profile_industry.length; t++) {
-                        if((profiles[i]._id).toString() === (profile_industry[t].Profile).toString()) {
-                            candidacy.IndustryCandidate = profile_industry[t].Industry
-                            break
-                        }
-                    }    
+
                     break
                 }
             }
