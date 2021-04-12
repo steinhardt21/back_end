@@ -720,11 +720,11 @@ router.post('/new-call', auth, async (req, res) => {
 
   console.log(req.body)
   try{
+    let pos  = '6074b0c6e25f3348639fb03a'
     if(req.body?.Position !== '') {
-      const pos = req.body.Position
-    } else {
-      const pos = '6074b0c6e25f3348639fb03a'
-    }
+      pos = req.body.Position
+    } 
+
     let callProject = new Call_Project({
       Project: req.body.Project,
       Position: pos,
