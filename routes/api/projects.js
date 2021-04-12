@@ -718,26 +718,21 @@ router.delete('/comment/:id/:comment_id', auth, async (req, res) => {
 // @access   Private
 router.post('/new-call', auth, async (req, res) => {
 
-  console.log(req.body)
   try{
-    let pos  = '6074b0c6e25f3348639fb03a'
-    // if(req.body?.Position !== '') {
-      pos = req.body.Position
-    // } 
-
-
     let callProject = new Call_Project({
       Project: req.body.Project,
-      Position: pos,
+      Position: req.body.Position,
       Type_Colaboration: req.body.Type_Colaboration,
       City_Presence_Required: req.body.City_Presence_Required,
-      Skills: req.body?.Skills.split(',').map((skill) => ' ' + skill.trim())
+      Skills: req.body.Skills.split(',').map((skill) => ' ' + skill.trim())
     })
 
     const saveCallProject = await callProject.save();
+
     res.json(saveCallProject)
 
   } catch (err) {
+    console.error(err.message);
     res.status(500).send('Server Error');
   }
 
