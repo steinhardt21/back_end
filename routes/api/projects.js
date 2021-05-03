@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { check, validationResult } = require('express-validator');
 const auth = require('../../middleware/auth');
+const mongoose = require('mongoose')
 
 const Project  = require('../../models/Project');
 const User = require('../../models/User');
@@ -718,14 +719,32 @@ router.delete('/comment/:id/:comment_id', auth, async (req, res) => {
 // @access   Private
 router.post('/new-call', auth, async (req, res) => {
 
+  console.log('NEWCALLL', req.body)
+
+  
+
   try{
-    let callProject = new Call_Project({
-      Project: req.body.Project,
-      Position: req.body.Position,
-      Type_Colaboration: req.body.Type_Colaboration,
-      City_Presence_Required: req.body.City_Presence_Required,
-      Skills: req.body.Skills.split(',').map((skill) => ' ' + skill.trim())
-    })
+    let callProject
+    if(req.body.Position === '') {
+       callProject = new Call_Project({
+        Project: req.body.Project,
+        Position: mongoose.Types.ObjectId('6074b0c6e25f3348639fb03a'),
+        Type_Colaboration: req.body.Type_Colaboration,
+        City_Presence_Required: req.body.City_Presence_Required,
+        Skills: req.body.Skills.split(',').map((skill) => ' ' + skill.trim())
+      })
+    }
+    else
+    {
+       callProject = new Call_Project({
+        Project: req.body.Project,
+        Position: req.body.Position,
+        Type_Colaboration: req.body.Type_Colaboration,
+        City_Presence_Required: req.body.City_Presence_Required,
+        Skills: req.body.Skills.split(',').map((skill) => ' ' + skill.trim())
+      })
+    }
+   
 
     const saveCallProject = await callProject.save();
 
