@@ -157,7 +157,7 @@ router.get('/callsdata', async(req, res) => {
             }
 
             for(let t=0; t<listProjectIndustry.length; t++) {
-                if((call.Project?._id).toString() === (listProjectIndustry[t].Project).toString()) {
+                if((call.Project._id).toString() === (listProjectIndustry[t].Project).toString()) {
                   call.Industry = listProjectIndustry[t].Industry
                   break
                 }
