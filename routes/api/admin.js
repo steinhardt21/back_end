@@ -145,7 +145,9 @@ router.get('/callsdata', async(req, res) => {
         const listProjectIndustry = await Project_Industry.find().populate('Industry')
         const candidacies = await Candidacy.find().lean()
 
+        console.log('CALLS_DATA')
         call_project.map((call) => {
+            console.log('CALLLL', call)
             for(let p=0; p<project_owner.length; p++) {
               if((call.Project._id).toString() === (project_owner[p].Project).toString()) {
                 call.Founder = project_owner[p].User
@@ -155,7 +157,7 @@ router.get('/callsdata', async(req, res) => {
             }
 
             for(let t=0; t<listProjectIndustry.length; t++) {
-                if((call.Project._id).toString() === (listProjectIndustry[t].Project).toString()) {
+                if((call.Project?._id).toString() === (listProjectIndustry[t].Project).toString()) {
                   call.Industry = listProjectIndustry[t].Industry
                   break
                 }
@@ -197,8 +199,8 @@ router.get('/callsdata', async(req, res) => {
               
         })
 
-        // console.log('CALL')
-        // console.log(call_project)
+        console.log('CALL')
+        console.log(call_project)
         res.json(call_project)
     }
     catch(err)

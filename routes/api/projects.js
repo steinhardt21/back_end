@@ -452,11 +452,13 @@ router.get('/call/:id', async (req, res) => {
                                         .populate({path:'Project', populate: {path: 'Development_Stage'}})
                                         .lean() // NOTE: mongoose query results are not extensible
     
-    const projectAnalysis = await Project_Analysis
+    const toSort = await Project_Analysis
                                         .find({Project: callInformation.Project._id })
                                         .populate('Analysis_Question')
-    
-    
+                                        // .sort({"Analysis_Question.Date_Inserted": 1})
+                                        // .lean()
+    const projectAnalysis = toSort.sort((a, b) => a.Analysis_Question.Date_Inserted -  b.Analysis_Question.Date_Inserted)
+    console.log('projectanalysis', projectAnalysis)
     //List Project and Industry
     listProjectIndustry = await Project_Industry.find().populate('Industry')
 
