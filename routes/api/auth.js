@@ -26,6 +26,34 @@ router.get('/', auth, async (req, res) => {
   }
 });
 
+
+
+router.post('/reset-password', async(req, res) => {
+ 
+  try {
+    console.log(req.body)
+
+    
+
+    const salt = await bcrypt.genSalt(10)
+    const newPassword = await bcrypt.hash(req.body.Password_1, salt); // Hash the password
+  
+
+    let user = await User.findOne({ Email: req.body.Email });
+    let userUpdated = await User.findByIdAndUpdate(user._id, {Password: newPassword});
+
+
+  // Encrypt password
+ 
+  res.json(userUpdated)
+    // return res.json(candidacyUpdated)     
+  }catch (err) {
+    console.error(err.message)
+    res.status(500).send('Server Error')
+  }
+  
+})
+
 // @route    POST api/auth
 // @desc     Authenticate user & get token
 // @access   Public
