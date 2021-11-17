@@ -78,13 +78,13 @@ router.post(
      */
     
     //Management of the Date
-   const dateReceived = new Date(req.body.Date_Of_Birth);
+   const dateReceived = new Date(req.body.Birthday);
  
 
     //Build a profile
     const profileFields = {
         User: req.user.id,
-        Date_Of_Birth: dateReceived,
+        Birthday: req.body.Birthday,
         City_Living: req.body.City_Living,
         Biography: req.body.Biography,
         Position: req.body.Position,

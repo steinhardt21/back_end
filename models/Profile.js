@@ -15,9 +15,9 @@ const ProfileSchema = new mongoose.Schema({
     {
         type: String
     },
-    Date_Of_Birth:
+    Birthday:
     {
-        type: Date
+        type: String
     },
     Position:
     {

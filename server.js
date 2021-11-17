@@ -18,13 +18,13 @@ app.use(cors());
 
 
 // api routes
-app.use('/users', require('./routes/api/users'))
-app.use('/auth', require('./routes/api/auth'))
-app.use('/profile', require('./routes/api/profile'))
-app.use('/projects', require('./routes/api/projects'))
-app.use('/candidacy', require('./routes/api/candidacy'))
+app.use('/api/users', require('./routes/api/users'))
+app.use('/api/auth', require('./routes/api/auth'))
+app.use('/api/profile', require('./routes/api/profile'))
+app.use('/api/projects', require('./routes/api/projects'))
+app.use('/api/candidacy', require('./routes/api/candidacy'))
 
-app.use('/admin', require('./routes/api/admin'))
+app.use('/api/admin', require('./routes/api/admin'))
 
 app.use(errorHandler);
 
